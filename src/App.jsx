@@ -8,7 +8,7 @@ import { MovieProvider } from './contexts/MovieContext'
 function App() {
   return (
     <MovieProvider>
-      <Router basename="/MovieSite"> 
+      <Router basename=""> 
         <NavBar />
         <main className="main-content">
           <Routes>
