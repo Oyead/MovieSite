@@ -8,6 +8,7 @@ function App() {
 
 
   return (
+    
     <MovieProvider>
       <NavBar />
     <main className='main-content'>
