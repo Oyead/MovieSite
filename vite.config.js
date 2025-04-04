@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/MovieSite/', // Replace <REPO_NAME> if needed
+  base: '/MovieSite/',  // Make sure this is correct
 });
