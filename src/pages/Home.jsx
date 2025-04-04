@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
 import MovieCard from "../components/MovieCard";
-import '../css/Home.css'
-import { searchMovies, getPopularMovies } from "../services/api.js" 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { searchMovies, getPopularMovies } from "../services/api";
+import "../css/Home.css";
 
-export default function Home() {
+function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
@@ -22,25 +21,26 @@ export default function Home() {
         setLoading(false);
       }
     };
+
     loadPopularMovies();
   }, []);
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
-    if (loading) return;
-    
-    setLoading(true);
+    if (!searchQuery.trim()) return
+    if (loading) return
+
+    setLoading(true)
     try {
-      const searchResults = await searchMovies(searchQuery);
-      setMovies(searchResults);
-      setError(null);
+        const searchResults = await searchMovies(searchQuery)
+        setMovies(searchResults)
+        setError(null)
     } catch (err) {
-      setError("Failed to search movies...");
+        console.log(err)
+        setError("Failed to search movies...")
     } finally {
-      setLoading(false);
+        setLoading(false)
     }
-    setSearchQuery("");
   };
 
   return (
@@ -53,11 +53,13 @@ export default function Home() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button type="submit" className="search-button">Search</button>
+        <button type="submit" className="search-button">
+          Search
+        </button>
       </form>
-      
-      {error && <div className="error-message">{error}</div>}
-      
+
+        {error && <div className="error-message">{error}</div>}
+
       {loading ? (
         <div className="loading">Loading...</div>
       ) : (
@@ -70,3 +72,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
